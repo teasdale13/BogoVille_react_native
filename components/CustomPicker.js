@@ -16,7 +16,7 @@ export default class CustomPicker extends Component {
      * Fonction de React Native qui présentement va chercher tous les types dans la
      * base de données.
      */
-    componentWillMount(): void {
+    componentDidMount(): void {
         axios.get('http://bogoville.xyz/rest/type',{
             auth: {
                 username: 'admin',

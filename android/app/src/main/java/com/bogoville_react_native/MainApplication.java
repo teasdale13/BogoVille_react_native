@@ -1,4 +1,4 @@
-package com.bogoville_react_native;
+package com.BogoVille_react_native;
 
 import android.app.Application;
 

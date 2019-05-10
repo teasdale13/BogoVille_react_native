@@ -11,13 +11,6 @@ export default class Camera extends Component {
         }
     }
 
-    static navigationOptions = {
-        headerTitle: "Prenez une photo",
-        headerStyle: {
-            backgroundColor: '#f4511e',
-        }
-    };
-
     render() {
         return (
             <Container>

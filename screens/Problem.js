@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Container, Left, Right, Button, Text, Content, Radio, ListItem} from 'native-base/index';
+import {Container, Left, Right, Button, Text, Content, Radio, ListItem} from 'native-base';
 import {Col, Row, Grid} from 'react-native-easy-grid';
 import CustomPicker from '../components/CustomPicker';
 import Map from '../components/Map';
@@ -30,21 +30,13 @@ export default class Problem extends Component {
      * Fonction qui va chercher la position actuelle de l'utilisateur
      * lorsque la page est "montée" et le "stock" dans un state.
      */
-    componentWillMount(): void {
+    componentDidMount(): void {
         navigator.geolocation.getCurrentPosition((position) => {
             this.setState({latitudeNow: position.coords.latitude});
             this.setState({longitudeNow: position.coords.longitude});
 
         }, (error) => console.log(error));
     }
-
-
-    static navigationOptions = {
-        headerTitle: "Rapporter un problème",
-        headerStyle: {
-            backgroundColor: '#f4511e',
-        }
-    };
 
     /**
      * Fonction passée en props à l'enfant (Map) pour récupérer la localisation
@@ -80,15 +72,15 @@ export default class Problem extends Component {
 
     /**
      * Fonction qui insère les informations de la photo prise par l'utilisateur avant de signaler
-     * le problème.
+     * le problème pour récupérer le id_media pour pouvoir le joindre au probleme.
      *
-     * @param data les données de la photo en base64.
+     * @param pictureData les données de la photo en base64.
      */
-    postMedia(data) {
+    postMedia(pictureData) {
         if ((this.state.selected || this.state.latitudeMap !== 0 && this.state.longitudeMap !== 0) && this.state.type !== 0) {
-                if (data !== undefined) {
+                if (pictureData !== undefined) {
                     axios.post('http://bogoville.xyz/rest/media', {
-                            media: data.toString(),
+                            media: pictureData.toString(),
                             mime: "image/jpeg",
                             filename: null
                         },
@@ -189,7 +181,7 @@ export default class Problem extends Component {
                             </Col>
                             <Col style={{width: '50%'}}>
                                 <Button block light
-                                        onPress={() => this.props.navigation.navigate('Camera')}><Text>Photo</Text></Button>
+                                        onPress={() => this.props.navigation.navigate('Photo')}><Text>Photo</Text></Button>
                             </Col>
                         </Row>
                         <Row>

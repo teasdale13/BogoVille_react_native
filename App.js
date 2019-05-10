@@ -1,19 +1,13 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
-import React, {Component} from 'react';
-import {Navigator} from './router/Navigator';
+import React from 'react';
+import AppContainer from "./NavApp";
 
 
-export default class App extends Component<Props> {
+export default class App extends React.Component {
+    render() {
+        return (
 
-  render(){return(
-      <Navigator/>
-  );}
+            <AppContainer/>
 
+        );
+    }
 }
